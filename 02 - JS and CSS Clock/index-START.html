@@ -41,6 +41,7 @@
       border-radius:50%;
       margin:50px auto;
       position: relative;
+      transform: rotate(90deg);
       padding:2rem;
       box-shadow:
         0 0 0 4px rgba(0,0,0,0.1),
@@ -62,13 +63,29 @@
       background:black;
       position: absolute;
       top:50%;
+      transform-origin: 100%;
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
 
   </style>
 
   <script>
+    const
+      interval = 1000,
+      seconds = document.querySelector('.hand.second-hand'),
+      minutes = document.querySelector('.hand.min-hand'),
+      hours = document.querySelector('.hand.hour-hand');
 
+    window.setInterval(clock, interval);
+    minutes.style.cssText = `transform: rotate(0deg); transform-origin: bottom right;`;
 
+    function clock() {
+      const time = new Date();
+      seconds.style.cssText = `transform: rotate(${time.getSeconds() * 6}deg); transform-origin: bottom right;`;
+      minutes.style.cssText = `transform: rotate(${time.getMinutes() * 6}deg); transform-origin: bottom right;`;
+      hours.style.cssText = `transform: rotate(${time.getHours() * 30}deg); transform-origin: bottom right;`;
+    }
   </script>
 </body>
 </html>

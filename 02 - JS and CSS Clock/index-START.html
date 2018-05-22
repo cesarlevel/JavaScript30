@@ -82,9 +82,9 @@
 
     function clock() {
       const time = new Date();
-      seconds.style.cssText = `transform: rotate(${time.getSeconds() * 6}deg); transform-origin: bottom right;`;
-      minutes.style.cssText = `transform: rotate(${time.getMinutes() * 6}deg); transform-origin: bottom right;`;
-      hours.style.cssText = `transform: rotate(${time.getHours() * 30}deg); transform-origin: bottom right;`;
+      seconds.style.cssText = `transform: rotate(${time.getSeconds() * 6}deg);`;
+      minutes.style.cssText = `transform: rotate(${time.getMinutes() * 6}deg);`;
+      hours.style.cssText = `transform: rotate(${time.getHours() * 30}deg);`;
     }
   </script>
 </body>

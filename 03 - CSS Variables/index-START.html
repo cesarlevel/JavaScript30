@@ -21,6 +21,21 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+
+    .hl {
+      color: var(--base);
+    }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -45,6 +60,23 @@
   </style>
 
   <script>
+    let controls = document.querySelector('.controls');
+    let image = document.getElementsByTagName('img')[0];
+    let heading = document.querySelector('.hl');
+
+    controls.addEventListener('input', change, false);
+
+    function change(e) {
+      let target = e.target;
+      if (target.getAttribute('id') === 'spacing') {
+        image.style.setProperty('--spacing', target.value + 'px');
+      } else if (target.getAttribute('id') === 'blur') {
+        image.style.setProperty('--blur', target.value + 'px');
+      } else {
+        image.style.setProperty('--base', target.value);
+        heading.style.setProperty('--base', target.value);
+      }
+    }
   </script>
 
 </body>

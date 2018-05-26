@@ -60,23 +60,17 @@
   </style>
 
   <script>
-    let controls = document.querySelector('.controls');
-    let image = document.getElementsByTagName('img')[0];
-    let heading = document.querySelector('.hl');
+    const inputs = document.querySelectorAll('.controls input'),
+          image = document.getElementsByTagName('img')[0],
+          heading = document.querySelector('.hl');
 
-    controls.addEventListener('input', change, false);
-
-    function change(e) {
-      let target = e.target;
-      if (target.getAttribute('id') === 'spacing') {
-        image.style.setProperty('--spacing', target.value + 'px');
-      } else if (target.getAttribute('id') === 'blur') {
-        image.style.setProperty('--blur', target.value + 'px');
-      } else {
-        image.style.setProperty('--base', target.value);
-        heading.style.setProperty('--base', target.value);
-      }
+    function handleUpdate(e) {
+      const prefix = this.dataset.sizing || '';
+      image.style.setProperty(`--${this.getAttribute('id')}`, `${this.value}${prefix}`);
+      heading.style.setProperty(`--${this.getAttribute('id')}`, `${this.value}${prefix}`);
     }
+
+    inputs.forEach(input => input.addEventListener('input', handleUpdate));
   </script>
 
 </body>

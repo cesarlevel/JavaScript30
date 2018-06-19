@@ -7,6 +7,16 @@
 </head>
 <body>
 <script>
+const arr = [];
+const secret = 'wesbos';
+function konami(e) {
+  arr.push(e.key);
+  arr.splice(-secret.length - 1, arr.length - secret.length);
+  if (arr.join('').includes(secret)) {
+    cornify_add();
+  }
+}
+window.addEventListener('keyup', konami);
 </script>
 </body>
 </html>

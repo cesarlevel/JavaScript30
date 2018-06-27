@@ -44,8 +44,26 @@
   <ul id="bands"></ul>
 
 <script>
+const bandEl = document.querySelector('#bands');
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+const noArticlesBand = bands.map(band => {
+  if(band.includes('The ') || band.includes('A ') || band.includes('An ')) {
+    return band.split(' ').slice().splice(1).join(' ');
+  }
+  return band;
+});
+
+console.log(noArticlesBand);
+
+
+
+function redenderList(el, arr) {
+  const list = arr.map(item => `<li>${item}</li>`).join('');
+  el.innerHTML = list;
+}
+
+redenderList(bandEl, bands);
 
 </script>
 

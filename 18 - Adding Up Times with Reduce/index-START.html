@@ -182,6 +182,18 @@
     </li>
   </ul>
 <script>
+  const videos = document.querySelector('.videos');
+  const videoList = [...videos.children];
+
+  const reducedList = videoList.reduce((acc, number) => {
+    const timeArray = number.dataset.time.split(':');
+    const minutes = +timeArray[1];
+    const hours = +timeArray[0];
+    console.log(minutes + hours)
+    return acc + minutes + hours;
+  }, 0);
+
+  console.log(reducedList);
 </script>
 </body>
 </html>

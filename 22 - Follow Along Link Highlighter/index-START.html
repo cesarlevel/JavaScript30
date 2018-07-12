@@ -33,6 +33,8 @@
 
     document.body.appendChild(highlight);
 
+    // He uses getBoundingClientRect() for the coordinates
+
     links.forEach(link => {
       link.addEventListener('mouseover', e => {
         let width = link.offsetWidth;

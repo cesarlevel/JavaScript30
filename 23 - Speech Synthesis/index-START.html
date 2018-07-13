@@ -23,8 +23,8 @@
 
       <input name="pitch" type="range" min="0" max="2" step="0.1">
       <textarea name="text">Hello! I love JavaScript 👍</textarea>
-      <button id="stop">Stop!</button>
-      <button id="speak" onclick="speechSynthesis.speak(msg)">Speak</button>
+      <button id="stop" onclick="toggle(false)">Stop!</button>
+      <button id="speak" onclick="toggle()">Speak</button>
 
     </div>
 
@@ -41,17 +41,31 @@
   function populateVoices() {
     voices = this.getVoices();
     voicesDropdown.innerHTML = voices
+      .filter(voice => voice.lang.includes('es'))
       .map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`)
       .join('');
   }
 
   function setVoice() {
     msg.voice = voices.find(voice => voice.name === this.value);
-    console.log(msg.voice);
+    toggle();
+  }
+
+  function toggle(startOver = true) {
+    speechSynthesis.cancel();
+    if (startOver) {
+      speechSynthesis.speak(msg);
+    }
+  }
+
+  function setOption(e) {
+    msg[this.name] = this.value;
+    toggle();
   }
 
   speechSynthesis.addEventListener('voiceschanged', populateVoices);
   voicesDropdown.addEventListener('change', setVoice);
+  options.forEach(option => option.addEventListener('change', setOption));
 
 </script>
 

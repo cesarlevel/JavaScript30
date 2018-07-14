@@ -54,7 +54,19 @@
   </div>
 
 <script>
+  const nav = document.querySelector('nav');
+  const headerSize = document.querySelector('header').clientHeight;
+  const siteWrap = document.querySelector('.site-wrap');
 
+  function stickyNav(e) {
+    this.scrollY >= headerSize ?
+    document.body.setAttribute('style', `padding-top: ${nav.getBoundingClientRect().height}px`)
+    : document.body.setAttribute('style', `padding-top: 0px`);
+
+    nav.classList.toggle('is-sticky', this.scrollY >= headerSize);
+  }
+
+  window.addEventListener('scroll', stickyNav);
 </script>
 
 </body>

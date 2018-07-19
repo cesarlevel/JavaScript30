@@ -1,0 +1,6 @@
+function timer(seconds) {
+  const now = Date.now();
+  console.log(now);
+}
+
+timer();
